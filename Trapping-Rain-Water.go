@@ -1,39 +1,26 @@
-func trap(height []int) int {
-
-    if len(height) < 3 {
-        return 0
-    }
-
-    left := 0
-    right := len(height) - 1
-
-    left_max := 0
-    right_max := 0
-    total_water := 0
-
-    for left < right {
-      
-        if height[left] < height[right] {
-           
-            if height[left] >= left_max {
-                
-                left_max = height[left]
-            } else {
-               
-                total_water += left_max - height[left]
-            }
-            left++
-        } else { // height[right] <= height[left]
-            
-            if height[right] >= right_max {
-          
-                right_max = height[right]
-            } else {
-                
-                total_water += right_max - height[right]
-            }
-            right--
-        }
-    }
-    return total_water
-}
+1func trap(height []int) int {
+2    left := 0
+3    right := len(height) - 1
+4    maxLeft, maxRight := 0,0
+5    water := 0
+6
+7    for left < right {
+8        if height[left] <= height[right] {
+9            if height[left] >= maxLeft {
+10                maxLeft = height[left]
+11            } else {
+12                water += maxLeft - height[left] 
+13            }
+14            left += 1
+15        } else {
+16            if height[right] >= maxRight {
+17                maxRight = height[right]
+18            } else {
+19                water +=  maxRight - height[right]
+20            }
+21            right -= 1
+22        }
+23    }
+24
+25    return water
+26}
