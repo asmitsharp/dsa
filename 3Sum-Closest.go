@@ -1,35 +1,37 @@
-import \sort\
-func threeSumClosest(nums []int, target int) int {
-    sort.Ints(nums)
-
-    n := len(nums)
-    closestSum := nums[0] + nums[1] + nums[2]
-
-    for i:= 0; i < n - 2; i++ {
-        left, right := i + 1, n - 1
-
-        for left < right {
-            sum := nums[i] + nums[left] + nums[right]
-
-            if abs(sum-target) < abs(closestSum - target) {
-                closestSum = sum
-            }
-
-            if sum < target {
-                left++
-            } else if sum > target    {
-                right--
-            } else {
-                return sum
-            }
-        }
-    }
-    return closestSum
-}
-
-func abs(x int) int {
-    if x < 0 {
-        return -x
-    }
-    return x
-}
+1func threeSumClosest(nums []int, target int) int {
+2    sort.Ints(nums)
+3    closestSum := nums[0] + nums[1] + nums[2]
+4
+5    for i := 0; i < len(nums) - 2; i++ {
+6        l := i+1
+7        r := len(nums) - 1
+8
+9        for l < r {
+10            sum := nums[i] + nums[l] + nums[r]
+11
+12            if sum == target {
+13                return sum
+14            }
+15
+16            if abs(sum-target) < abs(closestSum-target) {
+17                closestSum = sum
+18            }
+19
+20            if sum < target {
+21                l++
+22            } else {
+23                r--
+24            }
+25
+26        }
+27    }
+28
+29    return closestSum
+30}
+31
+32func abs(num int) int {
+33    if num < 0 {
+34        return -num
+35    }
+36    return num
+37}
