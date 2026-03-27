@@ -11,28 +11,15 @@
 11        return 0
 12    }
 13
-14    result := [][]int{}
-15    queue := []*TreeNode{root}
+14    left := maxDepth(root.Left)
+15    right := maxDepth(root.Right)
 16
-17    for len(queue) > 0 {
-18        size := len(queue) 
-19        level := []int{}
-20
-21        for i := 0; i < size; i++ {
-22            node := queue[0]
-23            queue = queue[1:]
-24
-25            level = append(level, node.Val)
-26
-27            if node.Left != nil {
-28                queue = append(queue, node.Left)
-29            }
-30            if node.Right != nil {
-31                queue = append(queue, node.Right)
-32            }
-33
-34        }
-35        result = append(result, level)
-36    }
-37    return len(result)
-38}
+17    return 1 + max(left, right)
+18}
+19
+20func max(a, b int) int {
+21    if a > b {
+22        return a
+23    }
+24    return b
+25}
